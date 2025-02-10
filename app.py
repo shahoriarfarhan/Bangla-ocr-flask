@@ -7,7 +7,8 @@ import imutils
 import tensorflow as tf
 from werkzeug.utils import secure_filename
 from datetime import datetime
-#upload the cnn model
+# cnn model
+#model = tf.keras.models.load_model('model/BangIso_v7.h5')
 model = tf.keras.models.load_model('model/Ekush_7feb.h5')
 
 #bangla charcter for ekush dataset
@@ -49,7 +50,6 @@ def preprocess_image(image_path):
 
 
 def draw_prediction(img, x, y, w, h, character):
-    # Draw bounding box
     cv2.rectangle(img, (x, y), (x + w, y + h), (0, 128, 0), 2)
 
 
@@ -71,6 +71,7 @@ def process_box(gray, x, y, w, h):
     return np.expand_dims(normalized, axis=-1)
 @app.route("/about")
 def about():
+    
     return render_template("about.html")
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
@@ -90,7 +91,7 @@ def upload_file():
             img_resized, gray, processed_img = preprocess_image(file_path)
             contours = find_contours(processed_img)
 
-            # Collect ROIs and boxes
+            # ROIs and boxes
             characters = []
             boxes = []
             for c in contours:
@@ -108,18 +109,18 @@ def upload_file():
             else:
                 predicted_text = "No characters detected"
 
-            # Create annotated image
+            # annotated image
             img_with_boxes = img_resized.copy()
             for pred, (x, y, w, h) in zip(predictions, boxes):
                 character = characters_list[np.argmax(pred)]
                 draw_prediction(img_with_boxes, x, y, w, h, character)
 
-            # Save annotated image with timestamp
+            # Save 
             timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
             annotated_filename = f"annotated_{timestamp}_{filename}"
             annotated_path = os.path.join(app.config['UPLOAD_FOLDER'], annotated_filename)
             
-            # Convert color space and save
+            # Convert 
             img_with_boxes_rgb = cv2.cvtColor(img_with_boxes, cv2.COLOR_BGR2RGB)
             cv2.imwrite(annotated_path, img_with_boxes_rgb)
 
