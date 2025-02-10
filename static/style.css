@@ -1,0 +1,61 @@
+.upload-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 20vh;
+    width: 100%;
+    background-color: #ffffff;
+}
+.upload-form {
+    text-align: left;
+}
+h1 {
+    color: #0a0202;
+    text-align: center;
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-bottom: 2px solid #f7f8f9;
+}
+
+.annotated-image {
+    width: 100%;
+    height: auto;
+    border: 3px solid #0b0c0b;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.container {
+    background-image: url(ekush.jpg);
+    display: flex;
+    justify-content: space-between; /* Places items on left & right */
+    align-items: flex-start; /* Aligns items at the top */
+    gap: 20px; /* Adds spacing between sections */
+    margin: 20px; /* Adds margin around the container */
+}
+
+
+.image-container {
+    width: 48%; /* Ensures both take equal space */
+    min-width: 200px;
+    padding: 20px;
+    background: #212927;
+    color: white; /* Ensures text visibility */
+    border-radius: 8px; /* Adds smooth rounded corners */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Optional: Soft shadow effect */
+}
+.result-section {
+    width: 48%; /* Ensures both take equal space */
+    min-width: 200px;
+    
+    align-self: center;
+    
+    padding: 20px;
+    background: #dae8e5;
+    color: rgb(3, 3, 3); /* Ensures text visibility */
+    border-radius: 8px; /* Adds smooth rounded corners */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Optional: Soft shadow effect */
+}
+
+
+
